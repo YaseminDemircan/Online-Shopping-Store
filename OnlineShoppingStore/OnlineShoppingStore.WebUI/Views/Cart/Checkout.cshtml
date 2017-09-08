@@ -1,0 +1,37 @@
+﻿@model OnlineShoppingStore.Domain.Entities.ShippingDetails
+
+@{ 
+    ViewBag.Title = "Sipariş ver";
+}
+@*//<h2>Check out now</h2>*@
+<p>İsminizi ve adres bilgilerinizi giriniz.</p>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <h3>Alıcı:</h3>
+    <div class="form-group">
+        <label>Ad</label>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    </div>
+    <h3>Adres:</h3>
+    foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        if (property.PropertyName != "Name" && property.PropertyName != "GiftWrap")
+        {
+            <div class="form-group">               
+     <label>@(property.DisplayName ?? property.PropertyName)</label>               
+     @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })           
+             </div>
+        }
+    }
+    <h3>Seçenekler</h3>
+    <div class="checkbox">
+        <label>
+            @Html.EditorFor(x=>x.GiftWrap)
+            Hediye paketi
+        </label>
+    </div>
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Sipariş ver"/>
+    </div>
+}

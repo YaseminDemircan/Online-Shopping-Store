@@ -1,0 +1,27 @@
+﻿@model OnlineShoppingStore.WebUI.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Giriş yap";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Giriş yap</h3>
+    </div>
+    <div class="panel-body">
+        <p class="lead">Yönetim paneline girmek için kullanıcı adı ve şifrenizi yazınız.</p>
+              @using (Html.BeginForm()) { 
+                 @Html.ValidationSummary()            
+                 <div class="form-group">                
+                     <label>Kullanıcı Adı:</label>                
+                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })            
+                 </div>            
+                 <div class="form-group">                
+                     <label>Şifre:</label>                
+                     @Html.PasswordFor(m => m.Password, new { @class = "form-control" })            
+                 </div>            
+                 <input type="submit" value="Giriş yap" class="btn btn-primary" />        
+              }
+    </div>
+</div>
